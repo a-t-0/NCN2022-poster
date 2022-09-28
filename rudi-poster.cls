@@ -205,7 +205,8 @@
 % Ignore
 \setnewlength{\rudisizeblockmethods}{0.01\paperheight} % min
 % Methodology
-\setnewlength{\rudisizeblockintroduction}{0.37\paperheight}% min
+%\setnewlength{\rudisizeblockintroduction}{0.37\paperheight}% min
+\setnewlength{\rudisizeblockintroduction}{0.39\paperheight}% min
 % Ignore
 \setnewlength{\rudisizeblockdiscussion}{0.08\paperheight}
 

@@ -1,7 +1,8 @@
 %\section{Methodology}\label{sec:methodology}
 
-\subsection*{Algorithm Selection}\label{subsec:algorithm}
-The MDS approximation as presented by Alipour et al., is specified in the following Algorithm:
+\subsection{Select Distributed Algorithm}\label{subsec:algorithm}
+\vspace{-1.5em}
+The Minimum Dominating Set Approximation algorithm as presented by Alipour et al., is specified as:
 %Within the graph algorithms, some SNN algorithms may be naturally more robust than others. For example, SNN algorithms that calculate the shortest path within graphs may automatically re-route if radiation imposed neuron-death occurs. However, since this research aims at determining the effectivity of brain adaptation mechanisms, a stricter test is found in algorithms that can fail to produce meaningful output if a single neuronal or synaptic property is changed. Therefore, 
 %\begin{algorithm}%[h]%[1]
     %\caption{Distributed Algorithm for computing a total dominating set in a graph with given integer $m\geq 0$.}\label{alg:alipour}
@@ -12,20 +13,24 @@ The MDS approximation as presented by Alipour et al., is specified in the follow
 \textbf{Output:}\textit{Set of nodes that form a minimum total dominating set.}\\
 %\setlist{nolistsep}
 \vspace{-1.5em}
-\begin{itemize}[noitemsep]
+\begin{enumerate}[noitemsep]
 \itemsep-1.5em
-\item[--] \textit{In the first round, each node $v_i$ chooses a random number $0<r_i<1$ and computes its weight $w_i=d_i+r_i$ and sends $w_i$ to its adjacent neighbours.}\\
-\item[--] \textit{In the second round, each node $v$ marks a neighbour vertex $v_i$ whose weight $w_i$ is maximum among all the other neighbours of $v$.}\\
-\item[--] \For{$m$ rounds}{
-    -\textit{Let $x_i$ be the number of times that a vertex is marked by its neighbour vertices, let $w_i=x_i+r_i$}\\
-    -\textit{Unmark the marked vertices.}\\
-    -\textit{Each vertex marks the vertex with maximum $w_i$ among its neighbour vertices.}\\
+\item \textit{In the first round, each node $v_i$ chooses a random number $0<r_i<1$ and computes its weight $w_i=d_i+r_i$ and sends $w_i$ to its adjacent neighbours.}\\
+\item \textit{In the second round, each node $v$ marks a neighbour vertex $v_i$ whose weight $w_i$ is maximum among all the other neighbours of $v$.}\\
+\For{$m$ rounds}{
+    \begin{enumerate}[noitemsep]
+        \itemsep-1.5em
+    \item \textit{Let $x_i$ be the number of times that a vertex is marked by its neighbour vertices, let $w_i=x_i+r_i$}\\
+    \item \textit{Unmark the marked vertices.}\\
+    \item \textit{Each vertex marks the vertex with maximum $w_i$ among its neighbour vertices.}\\
+    \end{enumerate}
 }
 \vspace{1em}
-\item[--] \textit{The marked vertices are considered as the vertices in our total dominating set for $G$.}
-\end{itemize}
+\item \textit{The marked vertices are considered as the vertices in our total dominating set for $G$.}
+\end{enumerate}
 %\end{algorithm}
-
+\subsection{Convert Algorithm to Spiking Neural Network(SNN)}\label{subsec:algo_to_snn}
+\vspace{-1.5em}
 Next, an SNN implementation of this algorithm is generated using Leaky-Integrate-and-Fire (LIF) neurons. This implementation takes as input connected, triangle-free, planar graphs (E.g. Fig 1.). 
 %\begin{figure}[]
 %    \centering
@@ -60,9 +65,9 @@ Next, an SNN implementation of this algorithm is generated using Leaky-Integrate
 \end{rudifig}
 
 Then it converts these graphs into the specification of an SNN that is encoded in a new graph (E.g. Fig 2.). These graphs can then be simulated using the Lava backend by Loihi, or a custom networkx SSN simulator backend.
+%\vspace{2em}
 
-\noindent This SSN implementation of the MDS approximation algorithm is onwards referred to as the default network. This default network is enhanced with strategically placed redundant neurons that are inhibited by the default network neurons. Next, space radiation damage is simulated on the Loihi 2 in the form of random neuron deaths. These neuron deaths imply that a neuron is removed from the SNN, which can occur in both the default network and the set of redundancy neurons. If a default network neuron dies, the inhibition to the redundant neuron should be removed, causing the SNN to use the alternative neural pathway to recover from this damage. This usage of the alternative neural pathway simulates the multi-pathway structures found in brains of higher vertebrates and is proposed as the main adaptive mechanism in response to damage.
-
+%\noindent This SSN implementation of the MDS approximation algorithm is onwards referred to as the default network.
 %\begin{figure}[]
 %    \centering
 %    %\includegraphics[width=8cm]{latex/Images/structured_graph_snn_m0_n6_iter0_t77.png}
@@ -71,7 +76,7 @@ Then it converts these graphs into the specification of an SNN that is encoded i
 %    }
 %    \label{fig:encoded_snn}
 %\end{figure}
-\begin{rudifig}{\hsize}{Fig. 2: Example SNN}
+\begin{rudifig}{\hsize}{Fig. 2: Output SNN}
     
     \hspace{-1em}
     \includegraphics[width=\linewidth]{latex/Images/cropped.jpeg}
@@ -79,6 +84,29 @@ Then it converts these graphs into the specification of an SNN that is encoded i
     %}
     \label{fig:encoded_snn}
 \end{rudifig}
+
+
+\subsection{Apply Adaptation Mechanism to SNN}\label{subsec:adaptation}
+This default network is enhanced with strategically placed redundant neurons that are inhibited by the default network neurons. 
+\begin{rudifig}{\hsize}{Fig. 4: Adaptation: Redundancy (And Radiation in Red)}
+    
+    \hspace{-1em}
+    \includegraphics[width=\linewidth]{latex/Images/rad_adapted.png}
+    %\caption{Example SNN encoding of algorithm to approximate MDS on the input graph of \cref{fig:input_graph}. This module is connected in series where the mark counter neuron takes up the role of spike\_once neuron in the next round of the approximation algorithm. For a more detailed description of the SNN implementation the reader is referred to Diehl et al. \cite{diehl}. %TODO: update to match updated input graph.
+    %}
+    \label{fig:encoded_snn}
+\end{rudifig}
+\vspace{5em}
+
+
+\subsection{Simulate Radiation on SNN}\label{subsec:}
+Next, space radiation damage is simulated on the Loihi 2 in the form of random neuron deaths. These neuron deaths imply that a neuron is removed from the SNN, which can occur in both the default network and the set of redundancy neurons. If a default network neuron dies, the inhibition to the redundant neuron should be removed, causing the SNN to use the alternative neural pathway to recover from this damage. This usage of the alternative neural pathway simulates the multi-pathway structures found in brains of higher vertebrates and is proposed as the main adaptive mechanism in response to damage.
+
+\subsection{Compare SNN Performance With-/out Adaptation}\label{subsec:}
+
+
+
+ 
 
 
 \subsection*{Hardware}\label{subsec:hardware}
