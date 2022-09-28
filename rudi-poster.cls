@@ -206,14 +206,14 @@
 \setnewlength{\rudisizeblockmethods}{0.01\paperheight} % min
 % Methodology
 %\setnewlength{\rudisizeblockintroduction}{0.37\paperheight}% min
-\setnewlength{\rudisizeblockintroduction}{0.39\paperheight}% min
+\setnewlength{\rudisizeblockintroduction}{0.33\paperheight}% min
 % Ignore
 \setnewlength{\rudisizeblockdiscussion}{0.08\paperheight}
 
 % IGNORE
 \setnewlength{\rudisizeblockmethodsresultsbody}{0.26\paperheight}
 % Results & Discussion
-\setnewlength{\rudisizeblockconclusion}{0.30\paperheight}
+\setnewlength{\rudisizeblockconclusion}{0.16\paperheight}
 
 % Conclusion and Recommendations
 \setnewlength{\rudisizeblockrecommendations}{0.05\paperheight}
@@ -483,7 +483,7 @@
 }
 
 \AtEndDocument{
-\clearpage
+%\clearpage
 }
 
 % ======================================================================

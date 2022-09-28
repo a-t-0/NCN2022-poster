@@ -61,7 +61,8 @@
 
 % Move subsection up
 \usepackage{titlesec}
-\titlespacing*{\subsection}{0pt}{1.1\baselineskip}{\baselineskip}
+%\titlespacing*{\subsection}{1pt}{1.1\baselineskip}{\baselineskip}
+
 
 
 % : additional packages
@@ -245,9 +246,13 @@ resistance of neuromorphic space hardware}
         \ifx\homepath\overleafhome
             % Overleaf compilation.
             \input{chapters/2_methodology.tex}
+            \vspace{4em}
+            \input{chapters/some_fig.tex}
         \else
             % Local compilation
             \input{latex/chapters/2_methodology.tex}
+            \vspace{4em}
+            \input{latex/chapters/some_fig.tex}
         \fi
     \end{multicols}
 \end{rudiblockiintroduction}
@@ -316,6 +321,6 @@ resistance of neuromorphic space hardware}
 % ======================================================================
 % force removal of empty page at the end
 % (this will not work inside `\AtEndDocument`)
-\clearpage
+%\clearpage
 \end{document}
 
