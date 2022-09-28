@@ -437,7 +437,7 @@
 \gdef\rudiposterextralogos{#2}%
 \setlength{\parskip}{\parskip - \rudisizelogooffset}%
 \begin{tikzpicture}[remember picture, overlay]%
-    \node [anchor=south east, rectangle, inner sep=1.5\rudisizerightmargin, inner ysep=\rudisizemargin] (logoruumc) at (current page.south east) {\includegraphics[height=30\uum]{latex/os_logo.png}};%
+    \node [anchor=south east, rectangle, inner sep=0.5\rudisizerightmargin, inner ysep=\rudisizemargin] (logoruumc) at (current page.south east) {\includegraphics[height=90\uum]{latex/TUDelft_logo_rgb.png}};%
 \end{tikzpicture}%
 \begin{tikzpicture}[remember picture, overlay]%
 	\node [anchor=south west, rectangle, minimum height=\rudisizebottommargin, minimum width=0.2\hsize, xshift=\rudisizeleftmargin, align=left, inner ysep=\rudisizemargin] (contact) at (current page.south west) {%

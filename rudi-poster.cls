@@ -206,7 +206,7 @@
 \setnewlength{\rudisizeblockmethods}{0.01\paperheight} % min
 % Methodology
 %\setnewlength{\rudisizeblockintroduction}{0.37\paperheight}% min
-\setnewlength{\rudisizeblockintroduction}{0.53\paperheight}% min
+\setnewlength{\rudisizeblockintroduction}{0.475\paperheight}% min
 % Ignore
 \setnewlength{\rudisizeblockdiscussion}{0.08\paperheight}
 
@@ -216,7 +216,7 @@
 \setnewlength{\rudisizeblockconclusion}{0.16\paperheight}
 
 % Conclusion and Recommendations
-\setnewlength{\rudisizeblockrecommendations}{0.05\paperheight}
+\setnewlength{\rudisizeblockrecommendations}{0.07\paperheight}
 
 \setnewlength{\rudisizeblockresults}{0.50\paperheight}
 
@@ -452,7 +452,7 @@
 \gdef\rudiposterextralogos{#2}%
 \setlength{\parskip}{\parskip - \rudisizelogooffset}%
 \begin{tikzpicture}[remember picture, overlay]%
-    \node [anchor=south east, rectangle, inner sep=1.5\rudisizerightmargin, inner ysep=\rudisizemargin] (logoruumc) at (current page.south east) {\includegraphics[height=30\uum]{latex/os_logo.png}};%
+    \node [anchor=south east, rectangle, inner sep=0.5\rudisizerightmargin, inner ysep=\rudisizemargin] (logoruumc) at (current page.south east) {\includegraphics[height=90\uum]{latex/TUDelft_logo_rgb.png}};%
 \end{tikzpicture}%
 \begin{tikzpicture}[remember picture, overlay]%
 	\node [anchor=south west, rectangle, minimum height=\rudisizebottommargin, minimum width=0.2\hsize, xshift=\rudisizeleftmargin, align=left, inner ysep=\rudisizemargin] (contact) at (current page.south west) {%

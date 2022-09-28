@@ -1,7 +1,7 @@
 
 %\vspace{-2em}
 \section{Discussion}\label{sec:discussion}
-%\vspace{-1em}
+%\vspace{-2em}
 The reliability of the results can be improved by running the algorithm on more and larger graphs. Running on the Loihi 2 using the Lava 0.4.0 Framework may facilitate this.
 \subsection*{Population Coding}\label{subsec:population_coding}
 Other encoding mechanisms than sparse coding may be considered to realise radiation robustness. For example, in population coding, a population of neurons could be used to represent integer values instead of a single neuron. %The \verb+spike_once+ neuron with a synaptic output weight of $x$ could be replaced by $x$ neurons along with $m$ excitatory controller neurons that verify whether each of those neurons is still functional. If part of the population dies, the controller neurons can excite parts of the population to compensate this loss. The $m$ controller neurons could inhibit each other and form a redundancy in the redundancy mechanism.

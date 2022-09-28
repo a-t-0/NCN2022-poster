@@ -19,7 +19,7 @@ The Minimum Dominating Set Approximation algorithm as presented by Alipour et al
 \vspace{-1.5em}
 \begin{enumerate}[noitemsep]
 \itemsep-1.5em
-\item \textit{In the first round, each node $v_i$ chooses a random number $0<r_i<1$ and computes its weight $w_i=d_i+r_i$ and sends $w_i$ to its adjacent neighbours.}\\
+\item \textit{In the first round, each node $v_i$ chooses a random number $0<r_i<1$, computes degree $d_i$ and computes its weight $w_i=d_i+r_i$ and sends $w_i$ to its adjacent neighbours.}\\
 \item \textit{In the second round, each node $v$ marks a neighbour vertex $v_i$ whose weight $w_i$ is maximum among all the other neighbours of $v$.}\\
 \For{$m$ rounds}{
     \begin{enumerate}[noitemsep]
@@ -29,24 +29,25 @@ The Minimum Dominating Set Approximation algorithm as presented by Alipour et al
     \item \textit{Each vertex marks the vertex with maximum $w_i$ among its neighbour vertices.}\\
     \end{enumerate}
 }
-\vspace{1em}
+\vspace{1.5em}
 \item \textit{The marked vertices are considered as the vertices in our total dominating set for $G$.}
 \end{enumerate}
 %\end{algorithm}
 
 \section{Convert Algorithm to Spiking Neural Network(SNN)}\label{subsec:algo_to_snn}
 %\vspace{-1.5em}
-Next, an SNN implementation of this algorithm is generated using Leaky-Integrate-and-Fire (LIF) neurons. This implementation takes as input connected, triangle-free, planar graphs (E.g. Fig 1.). Then it converts these graphs into the specification of an SNN that is encoded in a new graph (E.g. Fig 2.). These graphs can then be simulated using the Lava backend by Loihi, or a custom networkx SSN simulator backend.
+Next, an SNN implementation of this algorithm is generated using Leaky-Integrate-and-Fire (LIF) neurons. This implementation takes as input connected, triangle-free, planar graphs (E.g. Fig 1.). Then it converts these graphs into the specification of an SNN that is encoded in a new graph (E.g. Fig 2.). These graphs can then be simulated using the Lava backend by Loihi, or a custom Networkx SSN simulator backend.
 
 \section{Apply Adaptation Mechanism to SNN}\label{subsec:adaptation}
-This default network is enhanced with strategically placed redundant neurons that are inhibited by the default network neurons. 
+The SNN is enhanced with redundant neurons, that are by default inhibited by their original neuron (Fig. 3). If the original neuron dies, the redundant neuron automatically takes over. 
 
 
 \section{Simulate Radiation on SNN}\label{subsec:}
-Next, space radiation damage is simulated in the form of random neuron deaths. Redundant neurons can die too. \vspace{-7em}
+Space radiation damage is simulated in the form of random neuron deaths. Redundant neurons can die too (see red neuron pairs in Fig 4).. \vspace{-7em}
 \section{Compare SNN Performance With-/out Adaptation}\label{subsec:}
-Algorithm performance is compared with/without the adaptation mechanism when exposed to radiation.\\
-\\*[.5\baselineskip]
+%Algorithm performance during simulated radiation exposure, is compared with/without the adaptation mechanism.\\
+SNN performance during simulated radiation exposure is compared with/without adaptation.\\
+%\\*[.5\baselineskip]
 \\*
 %\begin{figure}[]
 %    \centering
